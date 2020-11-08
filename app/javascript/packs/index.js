@@ -7,6 +7,7 @@ import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import 'jquery'
 import 'bootstrap/dist/css/bootstrap.css'
+import '../stylesheets/application'
 import Recipies from '../components/Recipies'
 
 document.addEventListener('DOMContentLoaded', () => {

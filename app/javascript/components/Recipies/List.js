@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import _ from 'lodash'
 class List extends Component {
   constructor(props){
@@ -19,7 +20,9 @@ class List extends Component {
       rows.push(renderedRow)
     }
     return (
-      <div className="container-fluid"> {rows} </div>
+      <div className="row">
+        <div className="container-fluid"> {rows} </div>
+      </div>
     )
   }
 
@@ -32,8 +35,9 @@ class List extends Component {
     const elements = _.slice(recipes, offSet, upTo).map(function(recipe){
       return that.renderElement(recipe)
     })
+    const classes = `row row-cols-${elements.length}`
     return(
-      <div className="row">
+      <div className={classes}>
         {elements}
       </div>
     )
@@ -41,9 +45,9 @@ class List extends Component {
 
   renderElement(recipe){
     return(
-      <div className="col-sm">
+      <div className="col">
         <div className="card recipe-card">
-          <img src={recipe.image} className="card-img-top" alt={recipe.name}/>
+          <img src={recipe.image} className="card-img-top recipe-img" alt={recipe.name}/>
           <div className="card-body">
             <h5 className="card-title">{recipe.name}</h5>
             <a href="#" className="btn btn-primary">Details</a>
@@ -53,4 +57,9 @@ class List extends Component {
     )
   }
 }
-export default List
+const mapStateToProps = (state) => {
+  return {
+    recipes: state.recipes
+  };
+}
+export default connect(mapStateToProps)(List);
