@@ -1,6 +1,9 @@
 @import "brand_colors";
 .main-container{
-  padding: 5%;
+  padding-top: 1%;
+  padding-bottom: 3%;
+  padding-left: 5%;
+  padding-right: 5%;
 }
 .recipe-card{
   margin-bottom: 100px;
@@ -8,6 +11,7 @@
 .recipe-title{
   color: $textColor;
   text-align: center;
+  margin-bottom: 50px;
 }
 
 .recipe-img{

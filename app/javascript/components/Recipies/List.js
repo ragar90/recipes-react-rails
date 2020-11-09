@@ -27,15 +27,17 @@ class List extends Component {
   }
   render(){
     const totalRecipies = this.props.recipes.length
-    const totalRows = Math.ceil(totalRecipies / this.state.perRow)
-    let rows = []
-    for (let row = 0; row < totalRows; row++) {
-      const renderedRow = this.renderRow(this.props.recipes, row)
-      rows.push(renderedRow)
-    }
+    const that = this
+    let rows = this.props.recipes.map((recipe) => {
+      return that.renderElement(recipe)
+    })
     return (
-      <div className="row">
-        <div className="container-fluid"> {rows} </div>
+      <div className="row row-cols-1">
+        <div className="col container">
+          <div class="row row-cols-4">
+           {rows}
+          </div>
+        </div>
       </div>
     )
   }
