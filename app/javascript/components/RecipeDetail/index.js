@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from "react-router-dom";
+import ReactMarkdown from 'react-markdown'
 import _ from 'lodash'
 
 function BackButton() {
@@ -34,7 +35,9 @@ class RecipeDetail extends Component {
           <img src={recipe.image} className="figure-img img-fluid rounded recipe-detail-img" alt={recipe.title}/>
           {this.renderTagsContainer(recipe)}
           <hr class="my-4" />
-          <p>{recipe.description}</p>
+          <p>
+            <ReactMarkdown>{recipe.description}</ReactMarkdown>
+          </p>
         </div>
       </div>
     )
