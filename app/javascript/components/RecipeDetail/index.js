@@ -30,7 +30,7 @@ class RecipeDetail extends Component {
         <BackButton />
         <div className="jumbotron">
           <h1 className="display-4">{recipe.title}</h1>
-          <p class="lead">by {recipe.chef.name}</p>
+          <p class="lead">by {recipe.chef ? recipe.chef.name : 'Unknown'}</p>
           <img src={recipe.image} className="figure-img img-fluid rounded recipe-detail-img" alt={recipe.title}/>
           {this.renderTagsContainer(recipe)}
           <hr class="my-4" />

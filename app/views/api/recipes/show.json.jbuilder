@@ -6,8 +6,12 @@ json.recipe do
     json.tags @recipe.tags do |tag|
       json.name tag.name
     end
-    json.chef do
-      json.name @recipe.chef.name
+    if @recipe.chef.present?
+      json.chef do
+        json.name @recipe.chef.name
+      end
+    else
+      json.chef nil
     end
   end
 end
