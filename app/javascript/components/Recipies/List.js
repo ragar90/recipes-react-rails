@@ -4,7 +4,6 @@ import _ from 'lodash'
 class List extends Component {
   constructor(props){
     super(props)
-    console.log("props =>", this.props)
     const totalRecipies = this.props.recipes.length
     const recipesPerRow = 4
     this.state = {

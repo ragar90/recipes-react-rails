@@ -2,11 +2,11 @@ class Api::RecipesController < ApplicationController
 	before_action :set_respond_to_mime_type
   before_action :set_pagination
   def index
-    @recipes = Recipe.include(:chef, :tags).limit(@limit).offset(@offset)
+    @recipes = Recipe.includes(:chef, :tags).limit(@limit).offset(@offset)
   end
 
   def show
-    @recipe = Recipe.include(:chef, :tags).where(id: params[:id])
+    @recipe = Recipe.includes(:chef, :tags).where(id: params[:id])
   end
 
   private
@@ -24,8 +24,14 @@ class Api::RecipesController < ApplicationController
       self.is_initial_page? ? 0 : params[:page].to_i - 1
     end
 
+    def per_page
+      (params[:per_page].nil? or params[:per_page].to_i <= 0) ? 10 : params[:per_page].to_i 
+    end
+
     def set_pagination
-      @limit = params[:per_page].to_i ||10
+      @limit = per_page
       @offset = page * @limit
+      puts "@limit => #{@limit}"
+      puts "@offset => #{@offset}"
     end
 end

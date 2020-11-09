@@ -13,15 +13,19 @@ const initialState = {
     { name: "Recipe 8", image: "https://www.101cookbooks.com/mt-static/images/food/recipes/wfpb-kale-recipes/kale-salad-carrottop-pesto.jpg"},
     { name: "Recipe 9", image: "http://www.simplyrecipes.com/wp-content/uploads/2017/09/2017-10-03-Stromboli-8.jpg"},
     { name: "Recipe 10", image: "https://www.tasteofhome.com/wp-content/uploads/2017/09/Hamburger-Casserole_exps4441_5ING133188C04_18_3bC_RMS.jpg"},
-  ]
+  ],
+  page: 1
 }
 
 function reducer(state = initialState, action) {
   switch(action.type) {
     case FETCH_RECIPES:
+      const {loadedRecipes, requestPage} = action.payload
+      const recipies = loadedRecipes === null || loadedRecipes.length === 0 ? state.recipes : _.concat(state.recipes, loadedRecipes)
       return {
         ...state,
-        recipes: _.concat(state.recipes, action.payload.recipes)
+        recipes: recipies,
+        page: requestPage
       };
     case FETCH_RECIPE:
       return  {
