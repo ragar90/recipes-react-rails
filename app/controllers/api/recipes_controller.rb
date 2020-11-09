@@ -6,7 +6,7 @@ class Api::RecipesController < ApplicationController
   end
 
   def show
-    @recipe = Recipe.includes(:chef, :tags).where(id: params[:id])
+    @recipe = Recipe.includes(:chef, :tags).where(id: params[:id]).first
   end
 
   private

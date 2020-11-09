@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import List from './List'
-import * as recipiesActions from '../../actions'
 import { bindActionCreators } from 'redux';
+import * as recipiesActions from '../../actions'
+import List from './List'
 class Recipes extends Component {
   constructor(){
     super()
+  }
+  componentDidMount(){
+    this.fetchRecipes()
   }
   fetchRecipes = () => {
     this.props.actions.fetchRecipes(this.props.page)
   }
   render(){
+    console.log("rendering....")
     return (
       <div className="container-fluid main-container">
         <div className="row">
